@@ -5,9 +5,14 @@ import dns.rdatatype
 import dns.rdataclass
 import dns.rrset
 import dns.rdata
+import dns.resolver
 
 import socket
 import threading
+
+# Server configuration
+SERVER_IP = '127.0.0.66'
+SERVER_PORT = 53
 
 
 
@@ -18,45 +23,63 @@ dns_records = {
     'test123.com.' : '123.123.123.123'
 }
 
+# Server configuration
+SERVER_IP = '127.0.0.66'
+SERVER_PORT = 53
+
 
 def handle_client(data, addr, sock):
     try:
         decoded_data = decode_dns_message(data)
         query_name = decoded_data['query_name']
+        query_type = decoded_data['query_type']
         
-        # Log the complete DNS message in a structured format
+        # Only print server info for the first query (typically A record)
+        if query_type == 'A':
+            server_info = f"Server:\t\t{SERVER_IP}\nAddress:\t{SERVER_IP}#{SERVER_PORT}\n"
+            prntlog.info_message(server_info)
+        
+        # Log the DNS query
         prntlog.dns_query_message(addr, decoded_data['formatted_message'])
         
         if query_name in dns_records:
-            response = build_dns_response(data, query_name)
+            # Local record
+            addresses = {'A': [dns_records[query_name]], 'AAAA': []}
+            response = build_dns_response(data, query_name, addresses)
             sock.sendto(response, addr)
-            prntlog.success_message(f"✓ Response sent to {addr} for {query_name}")
+            prntlog.success_message(f"✓ Response sent to {addr}\n  for {query_name} (authoritative)")
         else:
-            response = build_nxdomain_response(data)
-            sock.sendto(response, addr)
-            prntlog.warning_message(f"✗ Domain {query_name} not found - NXDOMAIN sent to {addr}")
+            # Try recursive resolution
+            addresses = recursive_dns_lookup(query_name)
+            if addresses:
+                # Only include addresses of the requested type
+                filtered_addresses = {
+                    'A': addresses['A'] if query_type == 'A' else [],
+                    'AAAA': addresses['AAAA'] if query_type == 'AAAA' else []
+                }
+                response = build_dns_response(data, query_name, filtered_addresses)
+                sock.sendto(response, addr)
+                prntlog.success_message(f"✓ Response sent to {addr}\n  for {query_name} (non-authoritative)")
+            else:
+                response = build_nxdomain_response(data)
+                sock.sendto(response, addr)
+                prntlog.warning_message(f"✗ hwa qalk fein?\n Domain {query_name} not found\n NXDOMAIN sent to {addr}")
     except Exception as e:
-        prntlog.error_message(f"! Error handling client {addr}: {e}")
+        prntlog.error_message(f"\n! Error: hwa qalk fein? {addr}: \n {e} \n --------------------------------------------------")
 
 
  
 def decode_dns_message(raw_message):
     dns_message = dns.message.from_wire(raw_message)
-    decoded_data = {'query_name': str(dns_message.question[0].name)}
+    query_type = dns.rdatatype.to_text(dns_message.question[0].rdtype)
+    
+    decoded_data = {
+        'query_name': str(dns_message.question[0].name),
+        'query_type': query_type
+    }
     
     message_parts = []
-
-    f = 0
-    if f:
-        message_parts.append(f"Transaction ID: {hex(dns_message.id)}")
-        message_parts.append(f"QR: {'Response' if dns_message.flags & 0x8000 else 'Query'}")
-        message_parts.append(f"Opcode: {dns_message.opcode()}")
-        message_parts.append(f"AA: {'Authoritative Answer' if dns_message.flags & 0x0400 else 'Not Authoritative'}")
-        message_parts.append(f"TC: {'Truncated' if dns_message.flags & 0x0200 else 'Not Truncated'}")
-        message_parts.append(f"RD: {'Recursion Desired' if dns_message.flags & 0x0100 else 'Recursion Not Desired'}")
-        message_parts.append(f"RA: {'Recursion Available' if dns_message.flags & 0x0080 else 'Recursion Not Available'}")
-        message_parts.append(f"RCODE: {dns_message.rcode()}")
-        
+    
     message_parts.append("\nQuestion Section:")
     for question in dns_message.question:
         message_parts.append(f"  Name: {question.name}")
@@ -66,31 +89,42 @@ def decode_dns_message(raw_message):
     decoded_data['formatted_message'] = '\n'.join(message_parts)
     return decoded_data
 
-def build_dns_response(query_data, query_name):
-    # Parse the original query data using dnspython
+def build_dns_response(query_data, query_name, addresses=None):
     dns_query = dns.message.from_wire(query_data)
-    
-    # Create a new response message
     response = dns.message.Message(dns_query.id)
-    response.flags = dns.flags.QR | dns.flags.AA  # Response + Authoritative Answer
-    response.question = dns_query.question  # Copy the question section
-    
-    # Check if the queried domain is in the authoritative records
-    if query_name in dns_records:
-        # Create an RRset for the answer
-        answer = dns.rrset.from_text(
-            query_name,                # Domain name
-            300,                       # TTL (time to live)
-            dns.rdataclass.IN,         # Class IN (Internet)
-            dns.rdatatype.A,           # Type A (IPv4 address)
-            dns_records[query_name]    # IP address
-        )
-        response.answer.append(answer)
+    response.flags = dns.flags.QR  # Response flag
+    response.question = dns_query.question
+
+    if addresses:
+        # Add IPv4 addresses
+        if addresses.get('A'):
+            answer = dns.rrset.from_text(
+                query_name,
+                300,  # TTL
+                dns.rdataclass.IN,
+                dns.rdatatype.A,
+                *addresses['A']
+            )
+            response.answer.append(answer)
+
+        # Add IPv6 addresses
+        if addresses.get('AAAA'):
+            answer = dns.rrset.from_text(
+                query_name,
+                300,  # TTL
+                dns.rdataclass.IN,
+                dns.rdatatype.AAAA,
+                *addresses['AAAA']
+            )
+            response.answer.append(answer)
+
+        # Set authority flag only for local records
+        if query_name in dns_records:
+            response.flags |= dns.flags.AA
+
     else:
-        # Set NXDOMAIN response code for non-existent domains
         response.set_rcode(dns.rcode.NXDOMAIN)
-    
-    # Build the response message to send over the wire
+
     return response.to_wire()
 
 def handle_dns_query(data, addr, sock):
@@ -118,7 +152,7 @@ def handle_dns_query(data, addr, sock):
         response += data[12:]  # Copy the question section from the original query
         try:
             sock.sendto(response, addr)
-            prntlog.success_message(f"{query_name} is not found\nSent NXDOMAIN response to {addr}")
+            prntlog.success_message(f"{query_name} is not found\n Sent NXDOMAIN response to {addr}")
         except Exception as e:
             prntlog.error_message(f"ERROR SENDING TO {addr}: {e}\n\n\n")
 
@@ -130,3 +164,30 @@ def build_nxdomain_response(query_data):
     response += b'\x00\x00'    # No authority or additional records
     response += query_data[12:]  # Copy the question section
     return response
+
+def recursive_dns_lookup(query_name):
+    resolver = dns.resolver.Resolver()
+    # Use sets to automatically handle duplicates
+    results = {'A': set(), 'AAAA': set()}
+    
+    try:
+        # Get IPv4 addresses
+        answers = resolver.resolve(query_name, 'A')
+        for rdata in answers:
+            results['A'].add(str(rdata))
+    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
+        pass
+
+    try:
+        # Get IPv6 addresses
+        answers = resolver.resolve(query_name, 'AAAA')
+        for rdata in answers:
+            results['AAAA'].add(str(rdata))
+    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
+        pass
+
+    # Convert sets back to lists for compatibility
+    return {
+        'A': list(results['A']),
+        'AAAA': list(results['AAAA'])
+    } if (results['A'] or results['AAAA']) else None

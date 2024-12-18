@@ -9,8 +9,8 @@ NC='\033[0m' # No Color
 
 # Test configuration
 DNS_SERVER="127.0.0.66"
-DOMAINS=("elbolbol.com" "hahalol.com" "nonexistent.com" "test123.com")
-PARALLEL_QUERIES=5
+DOMAINS=("hahalol.com" "m4mwgoud.com" "google.com" "elbolbol.com")
+PARALLEL_QUERIES=10
 TOTAL_TESTS=10
 
 # Function to get high precision timestamp

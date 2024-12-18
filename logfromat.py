@@ -70,5 +70,5 @@ def debug_message(message):
 def dns_query_message(client_addr, message_content):
     """Prints a formatted DNS query message with clear separation"""
     separator = "-" * 50
-    formatted_message = f"\nDNS Query from {client_addr}\n{separator}\n{message_content}\n{separator}\n"
-    logger.log(formatted_message, color=BLUE)
+    formatted_message = f"\n{BLUE}DNS Query from {client_addr} {RESET}\n{separator}{message_content}\n{separator}\n"
+    logger.log(formatted_message, color=RESET)
