@@ -6,7 +6,7 @@ import queue
 import sys
 from threading import Thread
 
-# ANSI escape sequences for coloring
+
 RED = '\033[91m'
 GREEN = '\033[92m'
 YELLOW = '\033[93m'
@@ -20,7 +20,7 @@ class ThreadSafeLogger:
         self.log_queue = queue.Queue()
         self.log_lock = threading.Lock()
         self.running = True
-        # Start logger thread
+        
         self.logger_thread = Thread(target=self._logger_worker, daemon=True)
         self.logger_thread.start()
 
@@ -42,7 +42,7 @@ class ThreadSafeLogger:
         self.running = False
         self.logger_thread.join()
 
-# Create global logger instance
+
 logger = ThreadSafeLogger()
 
 def tt():

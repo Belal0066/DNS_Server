@@ -5,7 +5,6 @@ import socket
 import threading
 import atexit
 
-# Register cleanup
 atexit.register(lambda: prntlog.logger.stop())
 
 
