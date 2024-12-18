@@ -1,6 +1,7 @@
 #dndData.py
 
 import logfromat as prntlog
+import logging
 
 import dns.message
 import dns.rdatatype
@@ -12,6 +13,7 @@ import dns.resolver
 
 
 SERVER_IP = '127.0.0.66'
+# SERVER_IP = '192.168.1.6'
 SERVER_PORT = 53
 
 
@@ -24,8 +26,7 @@ dns_records = {
 }
 
 
-SERVER_IP = '127.0.0.66'
-SERVER_PORT = 53
+
 
 
 def handle_client(data, addr, sock):
@@ -48,6 +49,7 @@ def handle_client(data, addr, sock):
             response = build_dns_response(data, query_name, addresses)
             sock.sendto(response, addr)
             prntlog.success_message(f"✓ Response sent to {addr}\n  for {query_name} (authoritative)")
+            logging.info(f"Response sent to {addr} for {query_name} (authoritative)")
         else:
             
             addresses = recursive_dns_lookup(query_name)
@@ -60,12 +62,15 @@ def handle_client(data, addr, sock):
                 response = build_dns_response(data, query_name, filtered_addresses)
                 sock.sendto(response, addr)
                 prntlog.success_message(f"✓ Response sent to {addr}\n  for {query_name} (non-authoritative)")
+                logging.info(f"Response sent to {addr} for {query_name} (non-authoritative)")
             else:
                 response = build_nxdomain_response(data)
                 sock.sendto(response, addr)
                 prntlog.warning_message(f"✗ hwa qalk fein?\n Domain {query_name} not found\n NXDOMAIN sent to {addr}")
+                logging.warning(f"Domain {query_name} not found. NXDOMAIN sent to {addr}")
     except Exception as e:
         prntlog.error_message(f"\n! Error: hwa qalk fein? {addr}: \n {e} \n --------------------------------------------------")
+        logging.error(f"Error handling client {addr}: {e}")
 
 
  
@@ -140,8 +145,10 @@ def handle_dns_query(data, addr, sock):
         try:
             sock.sendto(response, addr)
             prntlog.success_message(f"Sent response to {addr}")
+            logging.info(f"Sent response to {addr}")
         except Exception as e:
             prntlog.error_message(f"ERROR SENDING TO {addr}: {e}\n\n\n")
+            logging.error(f"Error sending to {addr}: {e}")
     else:
         
         response = data[:2]  
@@ -153,8 +160,10 @@ def handle_dns_query(data, addr, sock):
         try:
             sock.sendto(response, addr)
             prntlog.success_message(f"{query_name} is not found\n Sent NXDOMAIN response to {addr}")
+            logging.info(f"{query_name} not found. Sent NXDOMAIN response to {addr}")
         except Exception as e:
             prntlog.error_message(f"ERROR SENDING TO {addr}: {e}\n\n\n")
+            logging.error(f"Error sending to {addr}: {e}")
 
 def build_nxdomain_response(query_data):
     response = query_data[:2]  

@@ -55,7 +55,7 @@ TOTAL_START=$(date +%s)
 
 for ((i=1; i<=$TOTAL_TESTS; i++)); do
     
-    RANDOM_DOMAIN=${DOMAINS[$RANDOM % ${
+    RANDOM_DOMAIN=${DOMAINS[$RANDOM % ${#DOMAINS[@]}]}
     
     
     query_dns $RANDOM_DOMAIN $i &
@@ -76,4 +76,3 @@ TOTAL_DURATION=$((TOTAL_END - TOTAL_START))
 
 echo "===================="
 echo "All tests completed in $TOTAL_DURATION seconds"
-
