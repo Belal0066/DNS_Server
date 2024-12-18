@@ -1,1 +1,1 @@
-yt tut
+init basic
