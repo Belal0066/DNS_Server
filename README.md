@@ -8,22 +8,9 @@ The goal of the project is to implement a **DNS server** that is compliant with 
 
 #### **Key Functionalities:**
 
-- **DNS Query Resolution**: The server will accept queries from clients and return corresponding DNS records (e.g., IP addresses for A records, canonical names for CNAME, etc.).
-  
-- **Multiple Record Types**: The server will support querying and returning several DNS record types:
-  
-  - A (Address record)
-  - CNAME (Canonical Name record)
-  - MX (Mail Exchange record)
-  - TXT (Text record)
-  - NS (Name Server record)
-- **Zone Management**: The server will use **standard DNS zone files (master files)** to store and manage DNS records for various domains. These files will serve as the authoritative source of data for the domains the server is responsible for.
-  
-- **Query Handling**: The server will handle both **recursive and authoritative queries**. For authoritative queries, it will provide direct answers from the zone files. For recursive queries, it will forward requests to upstream DNS servers (if required).
-  
-- **Error Handling**: The server will return appropriate error messages based on the DNS status codes (RCODE) defined in the RFCs.
-  
-- **UDP/TCP Communication**: The server will handle DNS requests over **UDP** (for most queries) and **TCP** (for larger responses).
+-   **Basic DNS Query Resolution**: Handling A, CNAME, and MX queries.
+-   **UDP Communication**: Implementing DNS requests and responses over UDP.
+-   **Basic Error Handling**: Returning essential RCODEs (e.g., No Error, NXDOMAIN).
   
 
 ---
@@ -32,15 +19,12 @@ The goal of the project is to implement a **DNS server** that is compliant with 
 
 The goals of the DNS server project are to:
 
-1. **Comply with DNS RFCs**: The server should fully adhere to the **DNS message format** and **protocol behavior** defined in **RFC 1034** (concepts and facilities), **RFC 1035** (implementation and specification), and **RFC 2181** (clarifications to DNS).
   
-2. **Implement Robust Query Handling**: The server must handle different query types (A, CNAME, NS, MX, TXT) and provide accurate, RFC-compliant responses.
+1. **Implement Robust Query Handling**: The server must handle different query types (A, CNAME, NS, MX, TXT) and provide accurate, RFC-compliant responses.
   
-3. **Provide Real-time DNS Responses**: The DNS server should offer quick responses for common domain queries (such as resolving domain names to IP addresses).
+2. **Handle Large Responses with Truncation**: The server should correctly handle large DNS responses that exceed the 512-byte UDP limit, using TCP for truncation cases.
   
-4. **Handle Large Responses with Truncation**: The server should correctly handle large DNS responses that exceed the 512-byte UDP limit, using TCP for truncation cases.
-  
-5. **Error Management**: Implement clear and RFC-compliant error codes (e.g., SERVER_FAILURE, etc.) to inform clients of issues when queries cannot be resolved.
+3. **Error Management**: Implement clear and RFC-compliant error codes (e.g., SERVER_FAILURE, etc.) to inform clients of issues when queries cannot be resolved.
   
 
 ---
@@ -65,7 +49,7 @@ The DNS server will have the following functionalities:
   - **Question**: Echoes the original query.
   - **Answer**: Contains the resolved resource records (e.g., IP addresses for A records).
   - **Authority**: Provides authoritative name servers for the domain.
-  - **Additional**: Contains additional information (e.g., related records).
+
 
 ##
 
@@ -90,15 +74,12 @@ The DNS server will have the following functionalities:
 
 #### **d. Performance and Scalability**
 
-- **Concurrency**: The server should be capable of handling multiple client queries concurrently by using **threading** or **multiprocessing** to ensure efficient query processing.
+- **Concurrency**:  The server should be capable of handling multiple client queries concurrently by using threading.
   
 
 #### **e. Logging and Monitoring**
 
-- The server should maintain logs of all incoming queries, responses, and errors for troubleshooting and monitoring.
-  - **Query count**: Total number of queries processed.
-  - **Error count**: Number of failed queries and error codes.
-  - **Active connections**: List of current active client connections.
+-  The server should maintain logs of incoming queries, responses, and errors.
 
 ---
 
@@ -145,38 +126,20 @@ The server is responsible for:
 
 - Listening for incoming DNS queries on UDP/TCP port 53.
 - Parsing DNS queries based on the message format defined in RFC 1035.
-- Interacting with the zone files to retrieve resource records.
-- Building and sending DNS responses to clients.
-- Logging server activities such as active connections, query statistics, and errors.
+-   Uses a basic lookup mechanism for authoritative queries.
+-   Builds and sends DNS responses to clients.
+-   Logs server activities.
 
 **Subcomponents**:
 
-1. **Query Processor**: Parses incoming queries, validates them, and extracts the domain name and record type.
-2. **Response Builder**: Constructs DNS responses, including headers, questions, answers, authority, and additional sections.
+1. **Query Processor**: Parses incoming queries and extracts the domain name and record type.
+2. **Response Builder**: Constructs basic DNS responses, including headers, questions, and answers.
 3. **Transport Layer**:
   - **UDP**: Handles queries and responses that fit within 512 bytes.
   - **TCP**: Handles queries requiring zone transfers or responses exceeding 512 bytes.
 
-#### **2. DNS Client**
 
-The client initiates DNS queries to resolve domain names into IP addresses or retrieve other resource records. Typical clients include:
 
-- Web browsers (e.g., Chrome, Firefox).
-- OS DNS resolvers (e.g., Windows, Linux).
-
-**Interaction**:
-
-1. The client sends a DNS query to the server over UDP or TCP.
-2. The client receives a response and processes the result.
-
-#### **3. DNS Zone Files**
-
-The **zone files** are the key component for storing DNS resource records (A, CNAME, MX, etc.) for the domains the server is responsible for. These files are plain text files with a defined structure.
-
-- **Master Zone Files** will store the authoritative records for each domain.
-- The server will read the zone files on startup and use the data to respond to queries.
-
-####
 
 ---
 
