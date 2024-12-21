@@ -2,6 +2,7 @@
 
 import logfromat as prntlog
 import logging
+import socket
 
 import dns.message
 import dns.rdatatype
@@ -15,6 +16,14 @@ import dns.resolver
 SERVER_IP = '127.0.0.66'
 # SERVER_IP = '192.168.1.6'
 SERVER_PORT = 53
+
+ROOT_SERVERS = [
+    '198.41.0.4',    # a.root-servers.net
+    '199.9.14.201',  # b.root-servers.net
+    '192.33.4.12',   # c.root-servers.net
+    '199.7.91.13',   # d.root-servers.net
+    '192.203.230.10' # e.root-servers.net
+]
 
 
 
@@ -174,29 +183,73 @@ def build_nxdomain_response(query_data):
     response += query_data[12:]  
     return response
 
-def recursive_dns_lookup(query_name):
-    resolver = dns.resolver.Resolver()
+def query_nameserver(nameserver, query_name, query_type):
+    """
+    Send a DNS query to a specific nameserver and return the response
+    """
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.settimeout(2)
     
+    # Create DNS query message
+    query = dns.message.make_query(query_name, query_type)
+    
+    try:
+        sock.sendto(query.to_wire(), (nameserver, 53))
+        data, _ = sock.recvfrom(4096)
+        response = dns.message.from_wire(data)
+        return response
+    except Exception as e:
+        return None
+    finally:
+        sock.close()
+
+def recursive_dns_lookup(query_name):
+    """
+    Implement recursive DNS resolution starting from root servers
+    """
     results = {'A': set(), 'AAAA': set()}
     
-    try:
-        
-        answers = resolver.resolve(query_name, 'A')
-        for rdata in answers:
-            results['A'].add(str(rdata))
-    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
-        pass
-
-    try:
-        
-        answers = resolver.resolve(query_name, 'AAAA')
-        for rdata in answers:
-            results['AAAA'].add(str(rdata))
-    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
-        pass
-
+    # Start with root servers
+    nameservers = ROOT_SERVERS
     
-    return {
+    while nameservers:
+        for nameserver in nameservers:
+            response = query_nameserver(nameserver, query_name, 'A')
+            
+            if not response:
+                continue
+                
+            # Check for answers
+            if response.answer:
+                for rrset in response.answer:
+                    for rdata in rrset:
+                        if rdata.rdtype == dns.rdatatype.A:
+                            results['A'].add(str(rdata))
+                        elif rdata.rdtype == dns.rdatatype.AAAA:
+                            results['AAAA'].add(str(rdata))
+                return {
+                    'A': list(results['A']),
+                    'AAAA': list(results['AAAA'])
+                }
+            
+            # If no answer, look for nameserver referrals
+            new_nameservers = []
+            
+            # Check additional section for nameserver IPs
+            for rrset in response.additional:
+                if rrset.rdtype == dns.rdatatype.A:
+                    for rdata in rrset:
+                        new_nameservers.append(str(rdata))
+            
+            # If we found new nameservers, use them for next iteration
+            if new_nameservers:
+                nameservers = new_nameservers
+                break
+        else:
+            # If we didn't find any new nameservers, stop
+            break
+    
+    return None if not (results['A'] or results['AAAA']) else {
         'A': list(results['A']),
         'AAAA': list(results['AAAA'])
-    } if (results['A'] or results['AAAA']) else None
+    }

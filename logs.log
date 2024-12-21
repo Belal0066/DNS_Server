@@ -1,0 +1,53 @@
+2024-12-21 19:31:18,387 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-21 19:31:18,387 - DEBUG - Server is listening
+2024-12-21 19:31:22,076 - INFO - Received data from ('127.0.0.1', 44658)
+2024-12-21 19:31:22,076 - DEBUG - Server is listening
+2024-12-21 19:31:22,077 - INFO - Received data from ('127.0.0.1', 37298)
+2024-12-21 19:31:22,077 - DEBUG - Server is listening
+2024-12-21 19:31:22,077 - INFO - Received data from ('127.0.0.1', 41460)
+2024-12-21 19:31:22,077 - DEBUG - Server is listening
+2024-12-21 19:31:22,077 - INFO - Received data from ('127.0.0.1', 35427)
+2024-12-21 19:31:22,078 - DEBUG - Server is listening
+2024-12-21 19:31:22,078 - INFO - Received data from ('127.0.0.1', 52373)
+2024-12-21 19:31:22,078 - DEBUG - Server is listening
+2024-12-21 19:31:22,078 - INFO - Received data from ('127.0.0.1', 60805)
+2024-12-21 19:31:22,079 - DEBUG - Server is listening
+2024-12-21 19:31:22,079 - INFO - Received data from ('127.0.0.1', 51061)
+2024-12-21 19:31:22,079 - DEBUG - Server is listening
+2024-12-21 19:31:22,079 - INFO - Received data from ('127.0.0.1', 54496)
+2024-12-21 19:31:22,079 - DEBUG - Server is listening
+2024-12-21 19:31:22,079 - INFO - Received data from ('127.0.0.1', 46889)
+2024-12-21 19:31:22,080 - DEBUG - Server is listening
+2024-12-21 19:31:22,080 - INFO - Received data from ('127.0.0.1', 54842)
+2024-12-21 19:31:22,080 - DEBUG - Server is listening
+2024-12-21 19:31:22,083 - INFO - Response sent to ('127.0.0.1', 44658) for elbolbol.com. (authoritative)
+2024-12-21 19:31:22,083 - INFO - Response sent to ('127.0.0.1', 51061) for elbolbol.com. (authoritative)
+2024-12-21 19:31:22,083 - INFO - Received data from ('127.0.0.1', 32799)
+2024-12-21 19:31:22,084 - DEBUG - Server is listening
+2024-12-21 19:31:22,084 - INFO - Response sent to ('127.0.0.1', 32799) for elbolbol.com. (authoritative)
+2024-12-21 19:31:22,084 - INFO - Received data from ('127.0.0.1', 56058)
+2024-12-21 19:31:22,084 - DEBUG - Server is listening
+2024-12-21 19:31:22,084 - INFO - Response sent to ('127.0.0.1', 56058) for elbolbol.com. (authoritative)
+2024-12-21 19:31:22,292 - INFO - Response sent to ('127.0.0.1', 37298) for google.com. (non-authoritative)
+2024-12-21 19:31:22,293 - INFO - Received data from ('127.0.0.1', 48623)
+2024-12-21 19:31:22,293 - DEBUG - Server is listening
+2024-12-21 19:31:22,295 - INFO - Response sent to ('127.0.0.1', 41460) for google.com. (non-authoritative)
+2024-12-21 19:31:22,295 - INFO - Received data from ('127.0.0.1', 53899)
+2024-12-21 19:31:22,295 - DEBUG - Server is listening
+2024-12-21 19:31:22,300 - INFO - Response sent to ('127.0.0.1', 52373) for google.com. (non-authoritative)
+2024-12-21 19:31:22,300 - INFO - Received data from ('127.0.0.1', 40072)
+2024-12-21 19:31:22,303 - DEBUG - Server is listening
+2024-12-21 19:31:22,481 - INFO - Response sent to ('127.0.0.1', 48623) for google.com. (non-authoritative)
+2024-12-21 19:31:22,486 - INFO - Response sent to ('127.0.0.1', 53899) for google.com. (non-authoritative)
+2024-12-21 19:31:22,492 - INFO - Response sent to ('127.0.0.1', 40072) for google.com. (non-authoritative)
+2024-12-21 19:31:22,533 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 35427)
+2024-12-21 19:31:22,536 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 46889)
+2024-12-21 19:31:22,536 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 54842)
+2024-12-21 19:31:22,539 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 60805)
+2024-12-21 19:31:22,540 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 54496)
+2024-12-21 19:31:50,698 - INFO - Received data from ('127.0.0.1', 58590)
+2024-12-21 19:31:50,699 - DEBUG - Server is listening
+2024-12-21 19:31:50,699 - INFO - Response sent to ('127.0.0.1', 58590) for elbolbol.com. (authoritative)
+2024-12-21 19:31:50,699 - INFO - Received data from ('127.0.0.1', 48272)
+2024-12-21 19:31:50,700 - DEBUG - Server is listening
+2024-12-21 19:31:50,700 - INFO - Response sent to ('127.0.0.1', 48272) for elbolbol.com. (authoritative)
