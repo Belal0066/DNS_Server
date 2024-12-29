@@ -1,7 +1,11 @@
 #dnsServer.py
 import logfromat as prntlog
-from dnsData import *
+
+from rslvrDns import *
+
 import logging
+import argparse
+import os
 
 import socket
 import threading
@@ -9,12 +13,22 @@ import atexit
 import signal
 import sys
 
+SERVER_IP = '127.0.0.66'
+
+parser = argparse.ArgumentParser(description='DNS Server')
+parser.add_argument('-n', '--new', action='store_true', help='logs 3la ndhafa')
+args = parser.parse_args()
+
+if args.new and os.path.exists('logs.log'):
+    open('logs.log', 'w').close()
+
+
 logging.basicConfig(filename='logs.log', level=logging.DEBUG, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 atexit.register(lambda: prntlog.logger.stop())
 
-ascii_art = '''
+ascii_t = '''
 ╔╦╗╦ ╦╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦ ╦╔═╗╔═╗  ╔═╗╔╦╗╔═╗╦═╗╔╦╗╔═╗╔╦╗
  ║ ╠═╣║╣   ╚═╗║╣ ╠╦╝╚╗╔╝║╣ ╠╦╝  ╠═╣╠═╣╚═╗  ╚═╗ ║ ╠═╣╠╦╝ ║ ║╣  ║║
  ╩ ╩ ╩╚═╝  ╚═╝╚═╝╩╚═ ╚╝ ╚═╝╩╚═  ╩ ╩╩ ╩╚═╝  ╚═╝ ╩ ╩ ╩╩╚═ ╩ ╚═╝═╩╝
@@ -32,7 +46,7 @@ signal.signal(signal.SIGINT, signal_handler)
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 try:
     sock.bind((SERVER_IP, SERVER_PORT))
-    prntlog.success_message(f"\n{ascii_art}ip: {SERVER_IP}, port {SERVER_PORT}\n")
+    prntlog.success_message(f"\n{ascii_t}ip: {SERVER_IP}, port {SERVER_PORT}\n")
     logging.info(f"Server started at ip: {SERVER_IP}, port {SERVER_PORT}")
 except Exception as e:
     prntlog.error_message(f"ERROR BINDING TO {SERVER_IP}:{SERVER_PORT}: {e}\n")

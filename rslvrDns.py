@@ -1,41 +1,20 @@
-#dndData.py
-
+#rslvrDns.py
+from utilDns import *
 import logfromat as prntlog
+from constsDns import DnsType, DnsClass, DnsFlags, DnsRcode, SERVER_PORT, ROOT_SERVERS
+
 import logging
 import socket
-
-import dns.message
-import dns.rdatatype
-import dns.rdataclass
-import dns.rrset
-import dns.rdata
-import dns.resolver
 
 
 
 SERVER_IP = '127.0.0.66'
-# SERVER_IP = '192.168.1.6'
-SERVER_PORT = 53
 
-ROOT_SERVERS = [
-    '198.41.0.4',    # a.root-servers.net
-    '199.9.14.201',  # b.root-servers.net
-    '192.33.4.12',   # c.root-servers.net
-    '199.7.91.13',   # d.root-servers.net
-    '192.203.230.10' # e.root-servers.net
-]
-
-
-
-
+# auth
 dns_records = {
-    'elbolbol.com.': '111.111.111.111',  
     'hahalol.com.': '222.222.222.222',
     'test123.com.' : '123.123.123.123'
 }
-
-
-
 
 
 def handle_client(data, addr, sock):
@@ -44,6 +23,9 @@ def handle_client(data, addr, sock):
         query_name = decoded_data['query_name']
         query_type = decoded_data['query_type']
         
+        # Ensure query_name ends with a dot
+        if not query_name.endswith('.'):
+            query_name = query_name + '.'
         
         if query_type == 'A':
             server_info = f"Server:\t\t{SERVER_IP}\nAddress:\t{SERVER_IP}"
@@ -84,11 +66,11 @@ def handle_client(data, addr, sock):
 
  
 def decode_dns_message(raw_message):
-    dns_message = dns.message.from_wire(raw_message)
-    query_type = dns.rdatatype.to_text(dns_message.question[0].rdtype)
+    dns_message = convertRaw_msg(raw_message)
+    query_type = DnsType.to_text(dns_message.question[0]['type'])
     
     decoded_data = {
-        'query_name': str(dns_message.question[0].name),
+        'query_name': str(dns_message.question[0]['name']),
         'query_type': query_type
     }
     
@@ -96,48 +78,48 @@ def decode_dns_message(raw_message):
     
     message_parts.append("\nQuestion Section:")
     for question in dns_message.question:
-        message_parts.append(f"  Name: {question.name}")
-        message_parts.append(f"  Type: {dns.rdatatype.to_text(question.rdtype)}")
-        message_parts.append(f"  Class: {dns.rdataclass.to_text(question.rdclass)}")
+        message_parts.append(f"  Name: {question['name']}")
+        message_parts.append(f"  Type: {DnsType.to_text(question['type'])}")
+        message_parts.append(f"  Class: {DnsClass.to_text(question['class'])}")
     
     decoded_data['formatted_message'] = '\n'.join(message_parts)
     return decoded_data
 
 def build_dns_response(query_data, query_name, addresses=None):
-    dns_query = dns.message.from_wire(query_data)
-    response = dns.message.Message(dns_query.id)
-    response.flags = dns.flags.QR  
+    dns_query = convertRaw_q(query_data) #to do
+    response = buildResp(dns_query.id) #to do
+    response.flags = DnsFlags.QR  
     response.question = dns_query.question
 
     if addresses:
         
         if addresses.get('A'):
-            answer = dns.rrset.from_text(
+            answer = buildAns(  #to do
                 query_name,
                 300,  
-                dns.rdataclass.IN,
-                dns.rdatatype.A,
+                DnsClass.IN,
+                DnsType.A,
                 *addresses['A']
             )
             response.answer.append(answer)
 
         
         if addresses.get('AAAA'):
-            answer = dns.rrset.from_text(
+            answer = buildAns( #to do
                 query_name,
                 300,  
-                dns.rdataclass.IN,
-                dns.rdatatype.AAAA,
+                DnsClass.IN,
+                DnsType.AAAA,
                 *addresses['AAAA']
             )
             response.answer.append(answer)
 
         
         if query_name in dns_records:
-            response.flags |= dns.flags.AA
+            response.flags |= DnsFlags.AA
 
     else:
-        response.set_rcode(dns.rcode.NXDOMAIN)
+        response.set_rcode(DnsRcode.NXDOMAIN)
 
     return response.to_wire()
 
@@ -175,13 +157,21 @@ def handle_dns_query(data, addr, sock):
             logging.error(f"Error sending to {addr}: {e}")
 
 def build_nxdomain_response(query_data):
-    response = query_data[:2]  
-    response += b'\x81\x83'    
-    response += b'\x00\x01'    
-    response += b'\x00\x00'    
-    response += b'\x00\x00'    
-    response += query_data[12:]  
-    return response
+    """Build a properly formatted NXDOMAIN response"""
+    dns_query = convertRaw_msg(query_data)
+    response = DnsMessage()
+    
+    # Copy the ID from the query
+    response.id = dns_query.id
+    
+    # Set appropriate flags for NXDOMAIN response
+    response.flags = DnsFlags.QR | DnsFlags.RA
+    response.flags |= DnsRcode.NXDOMAIN
+    
+    # Copy the question section from the query
+    response.question = dns_query.question
+    
+    return response.to_wire()
 
 def query_nameserver(nameserver, query_name, query_type):
     """
@@ -191,14 +181,16 @@ def query_nameserver(nameserver, query_name, query_type):
     sock.settimeout(2)
     
     # Create DNS query message
-    query = dns.message.make_query(query_name, query_type)
+    query = buildQ(query_name, query_type)
     
     try:
-        sock.sendto(query.to_wire(), (nameserver, 53))
+        wire_query = query.to_wire()
+        sock.sendto(wire_query, (nameserver, 53))
         data, _ = sock.recvfrom(4096)
-        response = dns.message.from_wire(data)
+        response = convertRaw_msg(data)
         return response
     except Exception as e:
+        logging.error(f"Error querying nameserver {nameserver}: {e}")
         return None
     finally:
         sock.close()
@@ -208,45 +200,69 @@ def recursive_dns_lookup(query_name):
     Implement recursive DNS resolution starting from root servers
     """
     results = {'A': set(), 'AAAA': set()}
+    visited_nameservers = set()
+    max_referrals = 10  # Prevent infinite loops
+    referral_count = 0
     
     # Start with root servers
     nameservers = ROOT_SERVERS
     
-    while nameservers:
+    while nameservers and referral_count < max_referrals:
+        referral_count += 1
+        
         for nameserver in nameservers:
+            if nameserver in visited_nameservers:
+                continue
+                
+            visited_nameservers.add(nameserver)
             response = query_nameserver(nameserver, query_name, 'A')
             
             if not response:
                 continue
-                
+            
             # Check for answers
             if response.answer:
-                for rrset in response.answer:
-                    for rdata in rrset:
-                        if rdata.rdtype == dns.rdatatype.A:
-                            results['A'].add(str(rdata))
-                        elif rdata.rdtype == dns.rdatatype.AAAA:
-                            results['AAAA'].add(str(rdata))
-                return {
-                    'A': list(results['A']),
-                    'AAAA': list(results['AAAA'])
-                }
+                for answer in response.answer:
+                    if answer['type'] == DnsType.A:
+                        results['A'].add(answer['rdata'])
+                    elif answer['type'] == DnsType.AAAA:
+                        results['AAAA'].add(answer['rdata'])
+                
+                if results['A'] or results['AAAA']:
+                    return {
+                        'A': list(results['A']),
+                        'AAAA': list(results['AAAA'])
+                    }
             
             # If no answer, look for nameserver referrals
             new_nameservers = []
+            ns_names = set()
             
-            # Check additional section for nameserver IPs
-            for rrset in response.additional:
-                if rrset.rdtype == dns.rdatatype.A:
-                    for rdata in rrset:
-                        new_nameservers.append(str(rdata))
+            # First, get NS records from authority section
+            for auth in response.authority:
+                if auth['type'] == DnsType.NS:
+                    ns_names.add(auth['rdata'])
             
-            # If we found new nameservers, use them for next iteration
+            # Then, look for their IP addresses in additional section
+            for additional in response.additional:
+                if additional['type'] == DnsType.A and additional['name'] in ns_names:
+                    new_nameservers.append(additional['rdata'])
+            
             if new_nameservers:
-                nameservers = new_nameservers
-                break
+                nameservers = [ns for ns in new_nameservers if ns not in visited_nameservers]
+                if nameservers:
+                    break
+            else:
+                # If we have NS names but no A records, try to resolve them
+                for ns_name in ns_names:
+                    ns_results = recursive_dns_lookup(ns_name)
+                    if ns_results and ns_results.get('A'):
+                        new_nameservers.extend(ns_results['A'])
+                
+                nameservers = [ns for ns in new_nameservers if ns not in visited_nameservers]
+                if nameservers:
+                    break
         else:
-            # If we didn't find any new nameservers, stop
             break
     
     return None if not (results['A'] or results['AAAA']) else {

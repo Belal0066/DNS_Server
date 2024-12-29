@@ -1,53 +1,261 @@
-2024-12-21 19:31:18,387 - INFO - Server started at ip: 127.0.0.66, port 53
-2024-12-21 19:31:18,387 - DEBUG - Server is listening
-2024-12-21 19:31:22,076 - INFO - Received data from ('127.0.0.1', 44658)
-2024-12-21 19:31:22,076 - DEBUG - Server is listening
-2024-12-21 19:31:22,077 - INFO - Received data from ('127.0.0.1', 37298)
-2024-12-21 19:31:22,077 - DEBUG - Server is listening
-2024-12-21 19:31:22,077 - INFO - Received data from ('127.0.0.1', 41460)
-2024-12-21 19:31:22,077 - DEBUG - Server is listening
-2024-12-21 19:31:22,077 - INFO - Received data from ('127.0.0.1', 35427)
-2024-12-21 19:31:22,078 - DEBUG - Server is listening
-2024-12-21 19:31:22,078 - INFO - Received data from ('127.0.0.1', 52373)
-2024-12-21 19:31:22,078 - DEBUG - Server is listening
-2024-12-21 19:31:22,078 - INFO - Received data from ('127.0.0.1', 60805)
-2024-12-21 19:31:22,079 - DEBUG - Server is listening
-2024-12-21 19:31:22,079 - INFO - Received data from ('127.0.0.1', 51061)
-2024-12-21 19:31:22,079 - DEBUG - Server is listening
-2024-12-21 19:31:22,079 - INFO - Received data from ('127.0.0.1', 54496)
-2024-12-21 19:31:22,079 - DEBUG - Server is listening
-2024-12-21 19:31:22,079 - INFO - Received data from ('127.0.0.1', 46889)
-2024-12-21 19:31:22,080 - DEBUG - Server is listening
-2024-12-21 19:31:22,080 - INFO - Received data from ('127.0.0.1', 54842)
-2024-12-21 19:31:22,080 - DEBUG - Server is listening
-2024-12-21 19:31:22,083 - INFO - Response sent to ('127.0.0.1', 44658) for elbolbol.com. (authoritative)
-2024-12-21 19:31:22,083 - INFO - Response sent to ('127.0.0.1', 51061) for elbolbol.com. (authoritative)
-2024-12-21 19:31:22,083 - INFO - Received data from ('127.0.0.1', 32799)
-2024-12-21 19:31:22,084 - DEBUG - Server is listening
-2024-12-21 19:31:22,084 - INFO - Response sent to ('127.0.0.1', 32799) for elbolbol.com. (authoritative)
-2024-12-21 19:31:22,084 - INFO - Received data from ('127.0.0.1', 56058)
-2024-12-21 19:31:22,084 - DEBUG - Server is listening
-2024-12-21 19:31:22,084 - INFO - Response sent to ('127.0.0.1', 56058) for elbolbol.com. (authoritative)
-2024-12-21 19:31:22,292 - INFO - Response sent to ('127.0.0.1', 37298) for google.com. (non-authoritative)
-2024-12-21 19:31:22,293 - INFO - Received data from ('127.0.0.1', 48623)
-2024-12-21 19:31:22,293 - DEBUG - Server is listening
-2024-12-21 19:31:22,295 - INFO - Response sent to ('127.0.0.1', 41460) for google.com. (non-authoritative)
-2024-12-21 19:31:22,295 - INFO - Received data from ('127.0.0.1', 53899)
-2024-12-21 19:31:22,295 - DEBUG - Server is listening
-2024-12-21 19:31:22,300 - INFO - Response sent to ('127.0.0.1', 52373) for google.com. (non-authoritative)
-2024-12-21 19:31:22,300 - INFO - Received data from ('127.0.0.1', 40072)
-2024-12-21 19:31:22,303 - DEBUG - Server is listening
-2024-12-21 19:31:22,481 - INFO - Response sent to ('127.0.0.1', 48623) for google.com. (non-authoritative)
-2024-12-21 19:31:22,486 - INFO - Response sent to ('127.0.0.1', 53899) for google.com. (non-authoritative)
-2024-12-21 19:31:22,492 - INFO - Response sent to ('127.0.0.1', 40072) for google.com. (non-authoritative)
-2024-12-21 19:31:22,533 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 35427)
-2024-12-21 19:31:22,536 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 46889)
-2024-12-21 19:31:22,536 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 54842)
-2024-12-21 19:31:22,539 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 60805)
-2024-12-21 19:31:22,540 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 54496)
-2024-12-21 19:31:50,698 - INFO - Received data from ('127.0.0.1', 58590)
-2024-12-21 19:31:50,699 - DEBUG - Server is listening
-2024-12-21 19:31:50,699 - INFO - Response sent to ('127.0.0.1', 58590) for elbolbol.com. (authoritative)
-2024-12-21 19:31:50,699 - INFO - Received data from ('127.0.0.1', 48272)
-2024-12-21 19:31:50,700 - DEBUG - Server is listening
-2024-12-21 19:31:50,700 - INFO - Response sent to ('127.0.0.1', 48272) for elbolbol.com. (authoritative)
+2024-12-29 19:33:31,856 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:33:31,856 - DEBUG - Server is listening
+2024-12-29 19:33:34,085 - INFO - Received data from ('127.0.0.1', 40381)
+2024-12-29 19:33:34,086 - ERROR - Error handling client ('127.0.0.1', 40381): 'dict' object has no attribute 'question'
+2024-12-29 19:33:34,086 - DEBUG - Server is listening
+2024-12-29 19:33:39,090 - INFO - Received data from ('127.0.0.1', 38324)
+2024-12-29 19:33:39,090 - ERROR - Error handling client ('127.0.0.1', 38324): 'dict' object has no attribute 'question'
+2024-12-29 19:33:39,090 - DEBUG - Server is listening
+2024-12-29 19:33:44,095 - INFO - Received data from ('127.0.0.1', 43908)
+2024-12-29 19:33:44,095 - ERROR - Error handling client ('127.0.0.1', 43908): 'dict' object has no attribute 'question'
+2024-12-29 19:33:44,095 - DEBUG - Server is listening
+2024-12-29 19:36:36,852 - DEBUG - Shutting down the server
+2024-12-29 19:36:42,148 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:36:42,148 - DEBUG - Server is listening
+2024-12-29 19:36:43,715 - INFO - Received data from ('127.0.0.1', 51442)
+2024-12-29 19:36:43,716 - ERROR - Error handling client ('127.0.0.1', 51442): 'dict' object has no attribute 'question'
+2024-12-29 19:36:43,716 - DEBUG - Server is listening
+2024-12-29 19:36:48,721 - INFO - Received data from ('127.0.0.1', 58905)
+2024-12-29 19:36:48,721 - ERROR - Error handling client ('127.0.0.1', 58905): 'dict' object has no attribute 'question'
+2024-12-29 19:36:48,721 - DEBUG - Server is listening
+2024-12-29 19:36:53,725 - INFO - Received data from ('127.0.0.1', 39516)
+2024-12-29 19:36:53,725 - ERROR - Error handling client ('127.0.0.1', 39516): 'dict' object has no attribute 'question'
+2024-12-29 19:36:53,725 - DEBUG - Server is listening
+2024-12-29 19:36:57,792 - INFO - Received data from ('127.0.0.1', 36093)
+2024-12-29 19:36:57,792 - ERROR - Error handling client ('127.0.0.1', 36093): 'dict' object has no attribute 'question'
+2024-12-29 19:36:57,792 - DEBUG - Server is listening
+2024-12-29 19:37:02,797 - INFO - Received data from ('127.0.0.1', 53000)
+2024-12-29 19:37:02,797 - ERROR - Error handling client ('127.0.0.1', 53000): 'dict' object has no attribute 'question'
+2024-12-29 19:37:02,797 - DEBUG - Server is listening
+2024-12-29 19:39:02,778 - DEBUG - Shutting down the server
+2024-12-29 19:39:10,252 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:39:10,252 - DEBUG - Server is listening
+2024-12-29 19:39:12,343 - INFO - Received data from ('127.0.0.1', 43927)
+2024-12-29 19:39:12,343 - ERROR - Error handling client ('127.0.0.1', 43927): 'dict' object has no attribute 'rdtype'
+2024-12-29 19:39:12,344 - DEBUG - Server is listening
+2024-12-29 19:39:17,348 - INFO - Received data from ('127.0.0.1', 41469)
+2024-12-29 19:39:17,349 - ERROR - Error handling client ('127.0.0.1', 41469): 'dict' object has no attribute 'rdtype'
+2024-12-29 19:39:17,349 - DEBUG - Server is listening
+2024-12-29 19:39:22,349 - INFO - Received data from ('127.0.0.1', 53378)
+2024-12-29 19:39:22,349 - ERROR - Error handling client ('127.0.0.1', 53378): 'dict' object has no attribute 'rdtype'
+2024-12-29 19:39:22,349 - DEBUG - Server is listening
+2024-12-29 19:40:56,635 - DEBUG - Shutting down the server
+2024-12-29 19:41:01,574 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:41:01,574 - DEBUG - Server is listening
+2024-12-29 19:41:03,072 - INFO - Received data from ('127.0.0.1', 37708)
+2024-12-29 19:41:03,073 - DEBUG - Server is listening
+2024-12-29 19:41:03,411 - WARNING - Domain google.com not found. NXDOMAIN sent to ('127.0.0.1', 37708)
+2024-12-29 19:41:11,708 - INFO - Received data from ('127.0.0.1', 60752)
+2024-12-29 19:41:11,708 - DEBUG - Server is listening
+2024-12-29 19:41:12,150 - WARNING - Domain hahalol.com not found. NXDOMAIN sent to ('127.0.0.1', 60752)
+2024-12-29 19:41:21,528 - INFO - Received data from ('127.0.0.1', 34371)
+2024-12-29 19:41:21,528 - DEBUG - Server is listening
+2024-12-29 19:41:21,528 - INFO - Received data from ('127.0.0.1', 41639)
+2024-12-29 19:41:21,528 - DEBUG - Server is listening
+2024-12-29 19:41:21,528 - INFO - Received data from ('127.0.0.1', 42774)
+2024-12-29 19:41:21,529 - DEBUG - Server is listening
+2024-12-29 19:41:21,529 - INFO - Received data from ('127.0.0.1', 53179)
+2024-12-29 19:41:21,529 - DEBUG - Server is listening
+2024-12-29 19:41:21,529 - INFO - Received data from ('127.0.0.1', 51619)
+2024-12-29 19:41:21,529 - DEBUG - Server is listening
+2024-12-29 19:41:21,529 - INFO - Received data from ('127.0.0.1', 35740)
+2024-12-29 19:41:21,530 - DEBUG - Server is listening
+2024-12-29 19:41:21,530 - INFO - Received data from ('127.0.0.1', 35761)
+2024-12-29 19:41:21,530 - DEBUG - Server is listening
+2024-12-29 19:41:21,530 - INFO - Received data from ('127.0.0.1', 60140)
+2024-12-29 19:41:21,530 - DEBUG - Server is listening
+2024-12-29 19:41:21,530 - INFO - Received data from ('127.0.0.1', 50002)
+2024-12-29 19:41:21,530 - DEBUG - Server is listening
+2024-12-29 19:41:21,530 - INFO - Received data from ('127.0.0.1', 44505)
+2024-12-29 19:41:21,531 - DEBUG - Server is listening
+2024-12-29 19:41:21,916 - WARNING - Domain elbolbol.com not found. NXDOMAIN sent to ('127.0.0.1', 41639)
+2024-12-29 19:41:21,917 - WARNING - Domain elbolbol.com not found. NXDOMAIN sent to ('127.0.0.1', 42774)
+2024-12-29 19:41:21,918 - WARNING - Domain hahalol.com not found. NXDOMAIN sent to ('127.0.0.1', 34371)
+2024-12-29 19:41:21,921 - WARNING - Domain m4mwgoud.com not found. NXDOMAIN sent to ('127.0.0.1', 35761)
+2024-12-29 19:41:21,923 - WARNING - Domain elbolbol.com not found. NXDOMAIN sent to ('127.0.0.1', 44505)
+2024-12-29 19:41:21,923 - WARNING - Domain hahalol.com not found. NXDOMAIN sent to ('127.0.0.1', 50002)
+2024-12-29 19:41:21,924 - WARNING - Domain hahalol.com not found. NXDOMAIN sent to ('127.0.0.1', 53179)
+2024-12-29 19:41:21,931 - WARNING - Domain google.com not found. NXDOMAIN sent to ('127.0.0.1', 35740)
+2024-12-29 19:41:21,932 - WARNING - Domain m4mwgoud.com not found. NXDOMAIN sent to ('127.0.0.1', 60140)
+2024-12-29 19:41:21,932 - WARNING - Domain google.com not found. NXDOMAIN sent to ('127.0.0.1', 51619)
+2024-12-29 19:42:38,547 - INFO - Received data from ('127.0.0.1', 39091)
+2024-12-29 19:42:38,548 - DEBUG - Server is listening
+2024-12-29 19:42:38,988 - WARNING - Domain hahalol.com not found. NXDOMAIN sent to ('127.0.0.1', 39091)
+2024-12-29 19:42:42,059 - DEBUG - Shutting down the server
+2024-12-29 19:42:47,621 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:42:47,621 - DEBUG - Server is listening
+2024-12-29 19:42:50,907 - INFO - Received data from ('127.0.0.1', 56153)
+2024-12-29 19:42:50,907 - DEBUG - Server is listening
+2024-12-29 19:42:51,273 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 56153)
+2024-12-29 19:42:54,677 - INFO - Received data from ('127.0.0.1', 40735)
+2024-12-29 19:42:54,677 - DEBUG - Server is listening
+2024-12-29 19:42:54,678 - INFO - Response sent to ('127.0.0.1', 40735) for hahalol.com. (authoritative)
+2024-12-29 19:42:54,678 - INFO - Received data from ('127.0.0.1', 34044)
+2024-12-29 19:42:54,678 - DEBUG - Server is listening
+2024-12-29 19:42:54,678 - INFO - Response sent to ('127.0.0.1', 34044) for hahalol.com. (authoritative)
+2024-12-29 19:43:11,988 - INFO - Received data from ('127.0.0.1', 60588)
+2024-12-29 19:43:11,988 - DEBUG - Server is listening
+2024-12-29 19:43:11,988 - INFO - Response sent to ('127.0.0.1', 60588) for test123.com. (authoritative)
+2024-12-29 19:43:11,988 - INFO - Received data from ('127.0.0.1', 39680)
+2024-12-29 19:43:11,989 - DEBUG - Server is listening
+2024-12-29 19:43:11,989 - INFO - Response sent to ('127.0.0.1', 39680) for test123.com. (authoritative)
+2024-12-29 19:46:28,960 - DEBUG - Shutting down the server
+2024-12-29 19:46:31,881 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:46:31,881 - DEBUG - Server is listening
+2024-12-29 19:46:35,137 - INFO - Received data from ('127.0.0.1', 37817)
+2024-12-29 19:46:35,137 - DEBUG - Server is listening
+2024-12-29 19:46:35,137 - INFO - Response sent to ('127.0.0.1', 37817) for test123.com. (authoritative)
+2024-12-29 19:46:35,138 - INFO - Received data from ('127.0.0.1', 58891)
+2024-12-29 19:46:35,138 - DEBUG - Server is listening
+2024-12-29 19:46:35,138 - INFO - Response sent to ('127.0.0.1', 58891) for test123.com. (authoritative)
+2024-12-29 19:46:39,671 - INFO - Received data from ('127.0.0.1', 48498)
+2024-12-29 19:46:39,671 - DEBUG - Server is listening
+2024-12-29 19:46:40,020 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 48498)
+2024-12-29 19:46:46,619 - INFO - Received data from ('127.0.0.1', 47245)
+2024-12-29 19:46:46,620 - DEBUG - Server is listening
+2024-12-29 19:46:46,620 - INFO - Received data from ('127.0.0.1', 33225)
+2024-12-29 19:46:46,620 - DEBUG - Server is listening
+2024-12-29 19:46:46,620 - INFO - Received data from ('127.0.0.1', 39768)
+2024-12-29 19:46:46,621 - DEBUG - Server is listening
+2024-12-29 19:46:46,621 - INFO - Received data from ('127.0.0.1', 60359)
+2024-12-29 19:46:46,621 - DEBUG - Server is listening
+2024-12-29 19:46:46,621 - INFO - Received data from ('127.0.0.1', 51627)
+2024-12-29 19:46:46,621 - DEBUG - Server is listening
+2024-12-29 19:46:46,621 - INFO - Received data from ('127.0.0.1', 50656)
+2024-12-29 19:46:46,622 - DEBUG - Server is listening
+2024-12-29 19:46:46,622 - INFO - Received data from ('127.0.0.1', 45035)
+2024-12-29 19:46:46,622 - DEBUG - Server is listening
+2024-12-29 19:46:46,622 - INFO - Received data from ('127.0.0.1', 52152)
+2024-12-29 19:46:46,622 - DEBUG - Server is listening
+2024-12-29 19:46:46,622 - INFO - Received data from ('127.0.0.1', 33602)
+2024-12-29 19:46:46,623 - DEBUG - Server is listening
+2024-12-29 19:46:46,623 - INFO - Received data from ('127.0.0.1', 57776)
+2024-12-29 19:46:46,623 - INFO - Response sent to ('127.0.0.1', 33602) for hahalol.com. (authoritative)
+2024-12-29 19:46:46,623 - INFO - Response sent to ('127.0.0.1', 57776) for hahalol.com. (authoritative)
+2024-12-29 19:46:46,623 - DEBUG - Server is listening
+2024-12-29 19:46:46,623 - INFO - Received data from ('127.0.0.1', 39025)
+2024-12-29 19:46:46,623 - DEBUG - Server is listening
+2024-12-29 19:46:46,623 - INFO - Response sent to ('127.0.0.1', 39025) for hahalol.com. (authoritative)
+2024-12-29 19:46:46,624 - INFO - Received data from ('127.0.0.1', 44998)
+2024-12-29 19:46:46,624 - DEBUG - Server is listening
+2024-12-29 19:46:46,624 - INFO - Response sent to ('127.0.0.1', 44998) for hahalol.com. (authoritative)
+2024-12-29 19:46:47,248 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 60359)
+2024-12-29 19:46:47,248 - WARNING - Domain elbolbol.com. not found. NXDOMAIN sent to ('127.0.0.1', 51627)
+2024-12-29 19:46:47,248 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 45035)
+2024-12-29 19:46:47,248 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 39768)
+2024-12-29 19:46:47,248 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 33225)
+2024-12-29 19:46:47,248 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 50656)
+2024-12-29 19:46:47,248 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 52152)
+2024-12-29 19:46:47,248 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 47245)
+2024-12-29 19:47:03,996 - INFO - Received data from ('127.0.0.1', 55001)
+2024-12-29 19:47:03,996 - DEBUG - Server is listening
+2024-12-29 19:47:04,316 - WARNING - Domain facebook.com. not found. NXDOMAIN sent to ('127.0.0.1', 55001)
+2024-12-29 19:47:07,680 - INFO - Received data from ('127.0.0.1', 37176)
+2024-12-29 19:47:07,680 - DEBUG - Server is listening
+2024-12-29 19:47:08,018 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 37176)
+2024-12-29 19:48:24,710 - DEBUG - Shutting down the server
+2024-12-29 19:48:26,400 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:48:26,400 - DEBUG - Server is listening
+2024-12-29 19:48:28,167 - INFO - Received data from ('127.0.0.1', 37208)
+2024-12-29 19:48:28,167 - DEBUG - Server is listening
+2024-12-29 19:48:28,473 - WARNING - Domain google.com. not found. NXDOMAIN sent to ('127.0.0.1', 37208)
+2024-12-29 19:48:33,567 - INFO - Received data from ('127.0.0.1', 33628)
+2024-12-29 19:48:33,567 - DEBUG - Server is listening
+2024-12-29 19:48:33,883 - WARNING - Domain facebook.com. not found. NXDOMAIN sent to ('127.0.0.1', 33628)
+2024-12-29 19:49:29,297 - INFO - Received data from ('127.0.0.1', 35114)
+2024-12-29 19:49:29,298 - DEBUG - Server is listening
+2024-12-29 19:49:29,298 - INFO - Response sent to ('127.0.0.1', 35114) for test123.com. (authoritative)
+2024-12-29 19:49:29,298 - INFO - Received data from ('127.0.0.1', 60499)
+2024-12-29 19:49:29,298 - INFO - Response sent to ('127.0.0.1', 60499) for test123.com. (authoritative)
+2024-12-29 19:49:29,299 - DEBUG - Server is listening
+2024-12-29 19:49:59,195 - DEBUG - Shutting down the server
+2024-12-29 19:50:01,314 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:50:01,314 - DEBUG - Server is listening
+2024-12-29 19:50:03,781 - INFO - Received data from ('127.0.0.1', 34852)
+2024-12-29 19:50:03,781 - DEBUG - Server is listening
+2024-12-29 19:50:03,781 - INFO - Response sent to ('127.0.0.1', 34852) for test123.com. (authoritative)
+2024-12-29 19:50:03,781 - INFO - Received data from ('127.0.0.1', 36745)
+2024-12-29 19:50:03,782 - DEBUG - Server is listening
+2024-12-29 19:50:03,782 - INFO - Response sent to ('127.0.0.1', 36745) for test123.com. (authoritative)
+2024-12-29 19:50:05,241 - INFO - Received data from ('127.0.0.1', 56091)
+2024-12-29 19:50:05,241 - DEBUG - Server is listening
+2024-12-29 19:50:05,530 - INFO - Response sent to ('127.0.0.1', 56091) for facebook.com. (non-authoritative)
+2024-12-29 19:50:05,530 - INFO - Received data from ('127.0.0.1', 41319)
+2024-12-29 19:50:05,530 - DEBUG - Server is listening
+2024-12-29 19:50:05,715 - INFO - Response sent to ('127.0.0.1', 41319) for facebook.com. (non-authoritative)
+2024-12-29 19:50:11,188 - INFO - Received data from ('127.0.0.1', 40017)
+2024-12-29 19:50:11,189 - DEBUG - Server is listening
+2024-12-29 19:50:11,452 - INFO - Response sent to ('127.0.0.1', 40017) for google.com. (non-authoritative)
+2024-12-29 19:50:11,453 - INFO - Received data from ('127.0.0.1', 40517)
+2024-12-29 19:50:11,453 - DEBUG - Server is listening
+2024-12-29 19:50:11,728 - INFO - Response sent to ('127.0.0.1', 40517) for google.com. (non-authoritative)
+2024-12-29 19:55:43,739 - DEBUG - Shutting down the server
+2024-12-29 19:55:48,390 - INFO - Server started at ip: 127.0.0.66, port 53
+2024-12-29 19:55:48,390 - DEBUG - Server is listening
+2024-12-29 19:55:51,955 - INFO - Received data from ('127.0.0.1', 56439)
+2024-12-29 19:55:51,956 - DEBUG - Server is listening
+2024-12-29 19:55:51,956 - INFO - Received data from ('127.0.0.1', 57950)
+2024-12-29 19:55:51,957 - DEBUG - Server is listening
+2024-12-29 19:55:51,957 - INFO - Received data from ('127.0.0.1', 37490)
+2024-12-29 19:55:51,957 - INFO - Response sent to ('127.0.0.1', 57950) for hahalol.com. (authoritative)
+2024-12-29 19:55:51,957 - DEBUG - Server is listening
+2024-12-29 19:55:51,957 - INFO - Received data from ('127.0.0.1', 45125)
+2024-12-29 19:55:51,958 - DEBUG - Server is listening
+2024-12-29 19:55:51,958 - INFO - Received data from ('127.0.0.1', 59283)
+2024-12-29 19:55:51,959 - DEBUG - Server is listening
+2024-12-29 19:55:51,959 - INFO - Response sent to ('127.0.0.1', 59283) for hahalol.com. (authoritative)
+2024-12-29 19:55:51,960 - INFO - Received data from ('127.0.0.1', 55639)
+2024-12-29 19:55:51,960 - DEBUG - Server is listening
+2024-12-29 19:55:51,960 - INFO - Received data from ('127.0.0.1', 39889)
+2024-12-29 19:55:51,960 - DEBUG - Server is listening
+2024-12-29 19:55:51,960 - INFO - Received data from ('127.0.0.1', 53502)
+2024-12-29 19:55:51,960 - DEBUG - Server is listening
+2024-12-29 19:55:51,961 - INFO - Received data from ('127.0.0.1', 33681)
+2024-12-29 19:55:51,961 - DEBUG - Server is listening
+2024-12-29 19:55:51,961 - INFO - Received data from ('127.0.0.1', 54830)
+2024-12-29 19:55:51,961 - DEBUG - Server is listening
+2024-12-29 19:55:51,961 - INFO - Received data from ('127.0.0.1', 56836)
+2024-12-29 19:55:51,961 - DEBUG - Server is listening
+2024-12-29 19:55:51,961 - INFO - Response sent to ('127.0.0.1', 56836) for hahalol.com. (authoritative)
+2024-12-29 19:55:51,961 - INFO - Received data from ('127.0.0.1', 39549)
+2024-12-29 19:55:51,962 - DEBUG - Server is listening
+2024-12-29 19:55:51,962 - INFO - Response sent to ('127.0.0.1', 39549) for hahalol.com. (authoritative)
+2024-12-29 19:55:52,164 - INFO - Response sent to ('127.0.0.1', 56439) for google.com. (non-authoritative)
+2024-12-29 19:55:52,164 - INFO - Received data from ('127.0.0.1', 35566)
+2024-12-29 19:55:52,164 - DEBUG - Server is listening
+2024-12-29 19:55:52,165 - INFO - Response sent to ('127.0.0.1', 33681) for google.com. (non-authoritative)
+2024-12-29 19:55:52,165 - INFO - Received data from ('127.0.0.1', 39858)
+2024-12-29 19:55:52,168 - DEBUG - Server is listening
+2024-12-29 19:55:52,287 - INFO - Response sent to ('127.0.0.1', 55639) for elbolbol.com. (non-authoritative)
+2024-12-29 19:55:52,288 - INFO - Received data from ('127.0.0.1', 48997)
+2024-12-29 19:55:52,288 - DEBUG - Server is listening
+2024-12-29 19:55:52,295 - INFO - Response sent to ('127.0.0.1', 37490) for elbolbol.com. (non-authoritative)
+2024-12-29 19:55:52,295 - INFO - Received data from ('127.0.0.1', 38468)
+2024-12-29 19:55:52,296 - DEBUG - Server is listening
+2024-12-29 19:55:52,320 - INFO - Response sent to ('127.0.0.1', 45125) for elbolbol.com. (non-authoritative)
+2024-12-29 19:55:52,320 - INFO - Response sent to ('127.0.0.1', 54830) for elbolbol.com. (non-authoritative)
+2024-12-29 19:55:52,320 - INFO - Received data from ('127.0.0.1', 60564)
+2024-12-29 19:55:52,321 - DEBUG - Server is listening
+2024-12-29 19:55:52,321 - INFO - Received data from ('127.0.0.1', 36032)
+2024-12-29 19:55:52,321 - DEBUG - Server is listening
+2024-12-29 19:55:52,349 - INFO - Response sent to ('127.0.0.1', 35566) for google.com. (non-authoritative)
+2024-12-29 19:55:52,353 - INFO - Response sent to ('127.0.0.1', 39858) for google.com. (non-authoritative)
+2024-12-29 19:55:52,425 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 53502)
+2024-12-29 19:55:52,425 - WARNING - Domain m4mwgoud.com. not found. NXDOMAIN sent to ('127.0.0.1', 39889)
+2024-12-29 19:55:52,613 - INFO - Response sent to ('127.0.0.1', 48997) for elbolbol.com. (non-authoritative)
+2024-12-29 19:55:52,614 - INFO - Response sent to ('127.0.0.1', 38468) for elbolbol.com. (non-authoritative)
+2024-12-29 19:55:52,637 - INFO - Response sent to ('127.0.0.1', 60564) for elbolbol.com. (non-authoritative)
+2024-12-29 19:55:52,645 - INFO - Response sent to ('127.0.0.1', 36032) for elbolbol.com. (non-authoritative)
+2024-12-29 19:56:28,713 - INFO - Received data from ('127.0.0.1', 56200)
+2024-12-29 19:56:28,713 - DEBUG - Server is listening
+2024-12-29 19:56:30,715 - ERROR - Error querying nameserver 198.41.0.4: timed out
+2024-12-29 19:56:32,608 - WARNING - Domain elboloasdfasfasd.com. not found. NXDOMAIN sent to ('127.0.0.1', 56200)
+2024-12-29 19:56:53,089 - INFO - Received data from ('127.0.0.1', 45695)
+2024-12-29 19:56:53,090 - DEBUG - Server is listening
+2024-12-29 19:56:54,056 - INFO - Response sent to ('127.0.0.1', 45695) for elbolbol.com. (non-authoritative)
+2024-12-29 19:56:54,056 - INFO - Received data from ('127.0.0.1', 49582)
+2024-12-29 19:56:54,057 - DEBUG - Server is listening
+2024-12-29 19:56:55,038 - INFO - Response sent to ('127.0.0.1', 49582) for elbolbol.com. (non-authoritative)
+2024-12-29 19:58:30,308 - INFO - Received data from ('127.0.0.1', 46744)
+2024-12-29 19:58:30,308 - DEBUG - Server is listening
+2024-12-29 19:58:30,309 - INFO - Response sent to ('127.0.0.1', 46744) for test123.com. (authoritative)

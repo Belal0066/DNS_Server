@@ -1,5 +1,5 @@
 #!/bin/bash
-# dns_tst.sh
+# _tst_dns.sh
 
 
 GREEN='\033[0;32m'
@@ -9,7 +9,7 @@ RESET='\033[0m'
 
 
 DNS_SERVER="127.0.0.66"
-DOMAINS=("hahalol.com" "m4mwgoud.com" "google.com" "elbolbol.com")
+DOMAINS=("hahalol.com" "m4mwgoud.com" "google.com" "test123.com")
 PARALLEL_QUERIES=10
 TOTAL_TESTS=10
 
